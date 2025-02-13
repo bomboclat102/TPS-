@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Grafico Migranti</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>Grafico migranti</h1>
+        <input type="file" onchange="leggiFile(this)">
+        <table>
+            <thead>
+                <tr>
+                    <th>Anno</th>
+                    <th>migranti</th>
+                </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+        <canvas id="canvas" width="1000" height="700"></canvas>
+        <script src="script.js"></script>
+    </body>
+</html> 
