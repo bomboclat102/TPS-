@@ -1,20 +1,21 @@
 function leggiFile(input) {
-    const file = input.files[0]
-    const reader = new FileReader()
+    let file = input.files[0]
+    let     reader = new FileReader()
     reader.readAsText(file)
     reader.onload = function() {
-        const content = reader.result
+        let content = reader.result
         mostraTabella(content)
         disegnaGrafico(content)
     }
 }
 function mostraTabella(content) {
-    const lines = content.split('\n').slice(1) 
+    const linea = content.split('\n').slice(1) 
     const tabella = []
-    for (const line of lines) {
-        const Splittato = line.split(",")
-        const anno = Splittato[0].slice(1, -1)
-        const persone = Splittato[1].slice(1, -1)
+    for (let i = 0; i < linea.length; i++) {
+        const line = linea[i]
+        const Split = line.split(",")
+        const anno = Split[0].slice(1, -1)
+        const persone = Split[1].slice(1, -1)
         tabella.push({'anno': anno, 'persone': persone})
     }
 
@@ -28,17 +29,18 @@ function mostraTabella(content) {
 function disegnaGrafico(content) {
     const canvas = document.getElementById('canvas')
     const ctx = canvas.getContext('2d')
-    const lines = content.split('\n').slice(1) 
+    const linea = content.split('\n').slice(1) 
     const anni = []
     const numeri = []
-    for (const line of lines) {
+    for (let i = 0; i < linea.length; i++) {
+        const line = linea[i]
         const Split = line.split(",")
         const anno = Split[0].slice(1, -1)
         const persone = Split[1].slice(1, -1)
-        
-        anni.push(parseInt(anno))
-        numeri.push(parseInt(persone))
+        anni.push(parseInt(anno));
+        numeri.push(parseInt(persone));
     }
+    
 
     const persone = massimo(numeri)
     ctx.fillRect(50, 50, 1, canvas.height-65);
@@ -53,10 +55,9 @@ function disegnaGrafico(content) {
         ctx.fillText(numeri[i], 50 + i * X, canvas.height - numeri[i] * Y);
         ctx.lineTo(50 + i * X, canvas.height - numeri[i] * Y)
     }
-
-    
     ctx.stroke()
 }
+
 function massimo(arr) {
     let max = arr[0];
     for (let i = 1; i < arr.length; i++) {
