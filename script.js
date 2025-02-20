@@ -1,37 +1,36 @@
 function leggiFile(input) {
     let file = input.files[0]
-    let     reader = new FileReader()
+    let reader = new FileReader()
     reader.readAsText(file)
     reader.onload = function() {
-        let content = reader.result
-        mostraTabella(content)
-        disegnaGrafico(content)
+        let content = reader.result;
+        Tab(content)
+        Graph(content)
     }
 }
-function mostraTabella(content) {
-    const linea = content.split('\n').slice(1) 
-    const tabella = []
+function Tab(content) {
+ let  linea = content.split('\n').slice(1) 
+    let tab = []
     for (let i = 0; i < linea.length; i++) {
         const line = linea[i]
         const Split = line.split(",")
         const anno = Split[0].slice(1, -1)
         const persone = Split[1].slice(1, -1)
-        tabella.push({'anno': anno, 'persone': persone})
+        tab.push({"anno": anno, "persone": persone})
     }
-
-    let rows = ''
-    const tbody = document.getElementById('tbody')
-    for (const row of tabella) {
+    let rows = " "
+    const tbody = document.getElementById("tbody")
+    for (const row of tab) {
         rows += '<tr>' + '<td>' + row.anno + '</td><td>' + row.persone + '</td></tr>'
     }
     tbody.innerHTML = rows
 }
-function disegnaGrafico(content) {
-    const canvas = document.getElementById('canvas')
-    const ctx = canvas.getContext('2d')
-    const linea = content.split('\n').slice(1) 
-    const anni = []
-    const numeri = []
+function Graph(content) {
+    const canvas = document.getElementById("canvas")
+    const ctx = canvas.getContext("2d")
+    let linea = content.split('\n').slice(1) 
+    let  anni = []
+    let  numeri = []
     for (let i = 0; i < linea.length; i++) {
         const line = linea[i]
         const Split = line.split(",")
@@ -40,13 +39,11 @@ function disegnaGrafico(content) {
         anni.push(parseInt(anno));
         numeri.push(parseInt(persone));
     }
-    
-
-    const persone = massimo(numeri)
-    ctx.fillRect(50, 50, 1, canvas.height-65);
-    ctx.fillRect(50, 685, 1000, 1);
+    const persone = massimo(numeri)    
     const X = (canvas.width - 50) / anni.length
     const Y = (canvas.height - 50) / persone
+    ctx.fillRect(50, 50, 1, canvas.height-65);
+    ctx.fillRect(50, 685, 1000, 1);
     ctx.beginPath()
     ctx.moveTo(50, canvas.height - 50 - numeri[0] * Y)
     for (let i = 1; i < anni.length; i++) {
