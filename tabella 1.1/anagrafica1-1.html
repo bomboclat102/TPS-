@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Anagrafica 1.1</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <main>
+            <h1>Anagrafica 1.1</h1>
+            <header>
+                <label for="selection">Stampa:</label>
+                <select id="selection">
+                    <option value="all">Tutto</option>
+                    <option value="adult">Solo maggiorenni</option>
+                </select>
+                <input id="search" type="search" placeholder="Cerca cognome">
+            </header>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+                        <th>Data di nascita</th>
+                        <th>Generazione</th>
+                        <th>Classe</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody"></tbody>
+            </table>
+<script src="../script.js"></script>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,19 @@
+[
+  { "nome": "Aarav", "cognome": "Sharma", "data_nascita": "1903-04-19", "classe": "1A" },
+  { "nome": "Emma", "cognome": "Johnson", "data_nascita": "1992-10-08", "classe": "5C" },
+  { "nome": "Mikhail", "cognome": "Ivanov", "data_nascita": "1975-02-14", "classe": "4B" },
+  { "nome": "Chen", "cognome": "Wei", "data_nascita": "1988-07-23", "classe": "2D" },
+  { "nome": "Amara", "cognome": "Diallo", "data_nascita": "2001-11-30", "classe": "3A" },
+  { "nome": "Santiago", "cognome": "Garcia", "data_nascita": "1969-05-03", "classe": "5D" },
+  { "nome": "Lina", "cognome": "Haddad", "data_nascita": "1944-09-12", "classe": "2B" },
+  { "nome": "Taro", "cognome": "Yamamoto", "data_nascita": "1933-01-27", "classe": "1C" },
+  { "nome": "Fatima", "cognome": "Al Mansouri", "data_nascita": "1998-03-08", "classe": "3D" },
+  { "nome": "Lucas", "cognome": "Silva", "data_nascita": "2005-12-17", "classe": "4A" },
+  { "nome": "Noah", "cognome": "Mueller", "data_nascita": "1912-06-26", "classe": "1B" },
+  { "nome": "Olivia", "cognome": "Brown", "data_nascita": "1983-02-28", "classe": "2C" },
+  { "nome": "Zanele", "cognome": "Khumalo", "data_nascita": "1970-08-04", "classe": "5A" },
+  { "nome": "Giuseppe", "cognome": "Rossi", "data_nascita": "1957-10-21", "classe": "4D" },
+  { "nome": "Ana", "cognome": "Popescu", "data_nascita": "1990-04-05", "classe": "2A" },
+  { "nome": "Mei", "cognome": "Zhang", "data_nascita": "2009-09-09", "classe": "3C" },
+  { "nome": "Oleh", "cognome": "Kovalenko", "data_nascita": "1926-12-03", "classe": "1D" }
+]
