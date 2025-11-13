@@ -78,19 +78,11 @@ function loadData() {
           data = [];
         }
         applyFilters();
-      } else {
-        console.error('Failed to fetch data.json:', xhr.status, xhr.statusText);
-        data = [];
-        renderRows([]);
       }
     }
-  };
-  xhr.onerror = function() {
-    console.error('Network error while fetching data.json');
-    data = [];
-    renderRows([]);
   };
   xhr.send();
 }
 
 loadData();
+
