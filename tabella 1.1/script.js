@@ -1,9 +1,7 @@
 let data = []; // will be filled after fetch
-
 const selector = document.getElementById('selection');
 const searchInput = document.getElementById('search');
 const tbody = document.querySelector('tbody');
-
 function getGenerazione(dateStr) {
   const y = new Date(dateStr).getFullYear();
   if (!y || Number.isNaN(y)) return '';
@@ -67,10 +65,7 @@ searchInput?.addEventListener('input', applyFilters);
 // Load JSON and render
  function loadData() {
   try {
-    const res = await fetch('example.json', { cache: 'no-store' });
-    if (!res.ok) {
-      throw new Error(`Failed to fetch data.json: ${res.status} ${res.statusText}`);
-    }
+    const res = await fetch('example.json');
     const json = await res.json();
     data = Array.isArray(json) ? json : [];
     applyFilters(); // initial render
@@ -83,3 +78,4 @@ searchInput?.addEventListener('input', applyFilters);
 
 // Start after DOM ready (module scripts run after parse)
 loadData();
+
