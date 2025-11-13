@@ -66,7 +66,7 @@ searchInput?.addEventListener('input', applyFilters);
 function loadData() {
   var xhr = new XMLHttpRequest();
 
-  xhr.open('GET', 'example.json' + Date.now(), true);
+  xhr.open('GET', 'example.json');
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4) {
       if (xhr.status >= 200 && xhr.status < 300) {
@@ -85,6 +85,7 @@ function loadData() {
 }
 
 loadData();
+
 
 
 
