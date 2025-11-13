@@ -1,7 +1,10 @@
-let data = []; // will be filled after fetch
+// Start after DOM ready (module scripts run after parse)
+let data = []; // will be filled after XHR load
+
 const selector = document.getElementById('selection');
 const searchInput = document.getElementById('search');
 const tbody = document.querySelector('tbody');
+
 function getGenerazione(dateStr) {
   const y = new Date(dateStr).getFullYear();
   if (!y || Number.isNaN(y)) return '';
@@ -32,22 +35,20 @@ function renderRows(list) {
 function isAdult(dateStr) {
   const born = new Date(dateStr);
   if (isNaN(born)) return false;
-  const ms18Years = 18 * 365 * 24 * 60 * 60 * 1000; 
+  const ms18Years = 18 * 365 * 24 * 60 * 60 * 1000; // same threshold logic
   return Date.now() - born.getTime() > ms18Years;
 }
+
 function applyFilters() {
   const selection = (selector?.value || 'all').toLowerCase();
   const q = (searchInput?.value || '').toLowerCase();
 
-  // start from full data
   let list = Array.isArray(data) ? data : [];
 
-  // filter by adults
   if (selection === 'adults') {
     list = list.filter(p => isAdult(p.data_nascita));
   }
 
-  // filter by last name search
   if (q !== '') {
     list = list.filter(p => {
       const last = (p && p.cognome ? String(p.cognome) : '').toLowerCase();
@@ -58,24 +59,38 @@ function applyFilters() {
   renderRows(list);
 }
 
-// Wire up events
 selector?.addEventListener('change', applyFilters);
 searchInput?.addEventListener('input', applyFilters);
 
-// Load JSON and render
- function loadData() {
-  try {
-    const res = await fetch('example.json');
-    const json = await res.json();
-    data = Array.isArray(json) ? json : [];
-    applyFilters(); // initial render
-  } catch (err) {
-    console.error(err);
+// Load JSON and render using XMLHttpRequest
+function loadData() {
+  var xhr = new XMLHttpRequest();
+  // cache bust param optional; remove if not needed
+  xhr.open('GET', './data.json?cb=' + Date.now(), true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        try {
+          var json = JSON.parse(xhr.responseText);
+          data = Array.isArray(json) ? json : [];
+        } catch (e) {
+          console.error('JSON parse error:', e);
+          data = [];
+        }
+        applyFilters();
+      } else {
+        console.error('Failed to fetch data.json:', xhr.status, xhr.statusText);
+        data = [];
+        renderRows([]);
+      }
+    }
+  };
+  xhr.onerror = function() {
+    console.error('Network error while fetching data.json');
     data = [];
     renderRows([]);
-  }
+  };
+  xhr.send();
 }
 
-// Start after DOM ready (module scripts run after parse)
 loadData();
-
