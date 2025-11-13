@@ -1,5 +1,5 @@
-// Start after DOM ready (module scripts run after parse)
-let data = []; // will be filled after XHR load
+
+let data = []; 
 
 const selector = document.getElementById('selection');
 const searchInput = document.getElementById('search');
@@ -35,7 +35,7 @@ function renderRows(list) {
 function isAdult(dateStr) {
   const born = new Date(dateStr);
   if (isNaN(born)) return false;
-  const ms18Years = 18 * 365 * 24 * 60 * 60 * 1000; // same threshold logic
+  const ms18Years = 18 * 365 * 24 * 60 * 60 * 1000; 
   return Date.now() - born.getTime() > ms18Years;
 }
 
@@ -62,10 +62,10 @@ function applyFilters() {
 selector?.addEventListener('change', applyFilters);
 searchInput?.addEventListener('input', applyFilters);
 
-// Load JSON and render using XMLHttpRequest
+
 function loadData() {
   var xhr = new XMLHttpRequest();
-  // cache bust param optional; remove if not needed
+
   xhr.open('GET', 'example.json' + Date.now(), true);
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4) {
@@ -85,5 +85,6 @@ function loadData() {
 }
 
 loadData();
+
 
 
