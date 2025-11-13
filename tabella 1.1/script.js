@@ -66,7 +66,7 @@ searchInput?.addEventListener('input', applyFilters);
 function loadData() {
   var xhr = new XMLHttpRequest();
   // cache bust param optional; remove if not needed
-  xhr.open('GET', './data.json?cb=' + Date.now(), true);
+  xhr.open('GET', 'example.json' + Date.now(), true);
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4) {
       if (xhr.status >= 200 && xhr.status < 300) {
@@ -85,4 +85,5 @@ function loadData() {
 }
 
 loadData();
+
 
